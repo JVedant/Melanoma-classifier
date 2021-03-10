@@ -158,3 +158,5 @@ credentials.py
 
 # pdf
 *.pdf
+
+.vscode
