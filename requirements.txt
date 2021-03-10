@@ -1,0 +1,7 @@
+boto3
+flask
+numpy
+torch
+pretrainedmodels
+albumentations
+wtfml==0.0.2

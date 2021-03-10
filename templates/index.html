@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../static/style.css" />
+        <!-- Bootstrap -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="../static/css/style.css" />
+        <title>Melanoma detection</title>
+    </head>
+
+    <body class="h-auto">
+        <nav class="navbar navbar-dark bg-dark">
+            <span class="navbar-brand mb-0 h1 container"
+                >Melanoma detection</span
+            >
+        </nav>
+        <div class="container mt-5 pl-3">
+            <h3>What does Melanoma means?</h3>
+            <p>
+                Melanoma, also known as malignant melanoma, is a type of skin
+                cancer that develops from the pigment-producing cells known as
+                melanocytes. Melanomas typically occur in the skin but may
+                rarely occur in the mouth, intestines or eye (uveal melanoma).
+                In women, they most commonly occur on the legs, while in men
+                they most commonly occur on the back.
+            </p>
+            <p>
+                About 25% of melanomas develop from moles. Changes in a mole
+                that can indicate melanoma include an increase in size,
+                irregular edges, change in color, itchiness or skin breakdown.
+            </p>
+        </div>
+
+        <div class="jumbotron my-5">
+            <form
+                action="{{ url_for('predict') }}"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+                <div class="input-group w-25 m-auto my-5">
+                    <input
+                        type="file"
+                        name="image"
+                        class="form-control"
+                        id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04"
+                        aria-label="Upload"
+                        onchange="previewFile()"
+                    />
+                    <button
+                        class="btn btn-outline-secondary"
+                        type="submit"
+                        id="inputGroupFileAddon04"
+                    >
+                        Predict
+                    </button>
+                </div>
+                <div
+                    class="image-preview m-auto w-25 d-flex flex-column justify-content-center"
+                >
+                    <p class="preview-text">Preview of image here 👇</p>
+                </div>
+            </form>
+
+            <h3 class="predict-text text-center text-primary p-3">
+                {{ predicted_label }}
+            </h3>
+        </div>
+        <footer class="container-fluid bg-dark fixed-bottom">
+            <p class="text-light p-3 text-center mb-0">
+                Thanks for using. Template made by
+                <a
+                    href="https://twitter.com/SutharViren1"
+                    class="text-info"
+                    target="_blank"
+                    >Viren Suthar</a
+                >
+            </p>
+        </footer>
+        <script>
+            function previewFile() {
+                var result = document.querySelector(".predict-text");
+                var imgPreview = document.querySelector(".image-preview");
+                var img = document.createElement("img");
+                var file = document.querySelector("input[type=file]").files[0];
+                var reader = new FileReader();
+
+                imgPreview.appendChild(img);
+                img.style.maxWidth = "400px";
+
+                reader.onloadend = function () {
+                    img.src = reader.result;
+                };
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                } else {
+                    img.src = "";
+                    console.log(preview.src);
+                    if ((img.src = "")) {
+                        img.style.display = "none";
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
