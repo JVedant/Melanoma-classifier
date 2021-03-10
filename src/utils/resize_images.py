@@ -42,15 +42,3 @@ if __name__ == "__main__":
                 (224, 224)
             ) for i in tqdm(test_images)
         )
-    
-    """
-    image_list = [train_images, test_images]
-    output_list = [output_train_folder, output_test_folder]
-    for images, output_folder in zip(image_list, output_list):
-        Parallel(n_jobs=20)(
-            delayed(resize_image)(
-                i,
-                output_folder,
-                (224, 224)
-            ) for i in tqdm(images)
-        )"""
