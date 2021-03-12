@@ -1,3 +1,3 @@
 # Melanoma-classifier
 
-comming soon!
+Adding soon!
